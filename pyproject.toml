@@ -1,0 +1,42 @@
+[project]
+name = "life-os"
+version = "0.1.0"
+description = "Life-OS: A personal AI assistant with persistent memory, notes, reminders, and natural language intent detection."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "alembic>=1.13.2",
+    "fastapi>=0.111.0",
+    "langgraph>=0.2.60",
+    "openai>=1.59.0",
+    "pgvector>=0.3.6",
+    "prometheus-fastapi-instrumentator>=7.0.0",
+    "psycopg[binary]>=3.2.1",
+    "pydantic-settings>=2.4.0",
+    "redis>=5.0.8",
+    "structlog>=24.4.0",
+    "sqlalchemy>=2.0.32",
+    "uvicorn[standard]>=0.30.5",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=24.8.0",
+    "httpx>=0.27.0",
+    "mypy>=1.11.1",
+    "pre-commit>=3.8.0",
+    "pytest>=8.3.2",
+    "ruff>=0.5.7",
+    "testcontainers[postgres,redis]>=4.8.1",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+exclude = ["alembic*", "docker*", "docs*", "tests*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

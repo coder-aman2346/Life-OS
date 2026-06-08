@@ -1,0 +1,21 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.16
+    hooks:
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.19.0
+    hooks:
+      - id: mypy
+        additional_dependencies:
+          - pydantic-settings
+          - sqlalchemy
+        pass_filenames: false
+        args:
+          - --ignore-missing-imports
+          - --follow-imports=silent
+          - app/schemas
+          - app/memory/short_term.py
+          - app/services/ai.py
